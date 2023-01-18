@@ -18,5 +18,30 @@ e) Create the table, insert suitable tuples and perform the following operations
 MongoDB
 1. Obtain the book details authored by “author_name”.
 2. Obtain the Names of students who have borrowed “Database” books.
-f) Write a PL/SQL procedure to print the first 8 Fibonacci numbers and a program to call
+
+F] Write a PL/SQL procedure to print the first 8 Fibonacci numbers and a program to call
 the same.
+    
+    
+Declare
+		 a number:=0;
+		 b number:=1;
+		 c number:=0;
+		 n number:=2;
+procedure fibonacci is
+Begin 
+		while(n<8)loop
+			c:=a+b;
+			dbms_output.put_line(c);
+			a:=b;
+			b:=c;
+			n:=n+1;
+		end loop;
+end;
+Begin
+		dbms_output.put_line('The Fibonacci Series is');
+		dbms_output.put_line(a);
+		dbms_output.put_line(b);
+		fibonacci;
+end;
+/
