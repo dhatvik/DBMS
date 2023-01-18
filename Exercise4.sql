@@ -13,6 +13,22 @@ SQL:
 number of accounts in all branches.
 d) Create the table, insert suitable tuples and perform the following operations using
 MongoDB
+db.createCollection('bank')
+db.bank.insertMany([
+    {cid:1,cname:'A',accno:1234,bid:11,bname:'hunsur'},
+    {cid:2,cname:'B',accno:1235,bid:22,bname:'hassan'},
+    {cid:2,cname:'B',accno:1236,bid:33,bname:'mysore'},
+    {cid:1,cname:'A',accno:1237,bid:44,bname:'bangalore'},
+    ])
+db.bank.find().pretty()    
+db.bank.find({bid:11},{bname:1,_id:0}).pretty()
+db.bank.aggregate([
+    {
+        $group:{_id:'$cid',no_of_accounts:{$sum:1}}
+        
+    }
+    ])
+    
 1. Find the branch name for a given Branch_ID.
 2. List the total number of accounts for each customer.
 e) Using cursors demonstrate the process of copying the contents of one table to a new table.
