@@ -6,6 +6,8 @@ b) State the schema diagram for the ER diagram.
 24
 c) Create the above tables, insert suitable tuples and perform the following operations in
 SQL:
+
+
 1. Obtain the details of customers who have both Savings and Current Account.
 2. Retrieve the details of branches and the number of accounts in each branch.
 3. Obtain the details of customers who have performed at least 3 transactions.
