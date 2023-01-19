@@ -16,8 +16,106 @@ along with the number of books.
 students.
 e) Create the table, insert suitable tuples and perform the following operations using
 MongoDB
+
+db.createCollection('Library')
+
+db.Library.insertMany([
+    {isbn:1111,title:'Database',author:'ABC',ssn:123,sname:'Vinay'},
+    {isbn:2222,title:'Blockchain',author:'XYZ',ssn:159,sname:'Vineeth'},
+    {isbn:3333,title:'Cloud',author:'PQR',ssn:193,sname:'Vikas'},
+    {isbn:4444,title:'DataStructures',author:'ABC',ssn:143,sname:'Vamshi'},
+    {isbn:1111,title:'Database',author:'ABC',ssn:456,sname:'Vishanav'}
+    ])
+    
+ 
+ { "ok" : 1 }
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("63c8cff47b9fb85f84137f60"),
+		ObjectId("63c8cff47b9fb85f84137f61"),
+		ObjectId("63c8cff47b9fb85f84137f62"),
+		ObjectId("63c8cff47b9fb85f84137f63"),
+		ObjectId("63c8cff47b9fb85f84137f64")
+	]
+}
+
+{
+	"_id" : ObjectId("63c8d0991305dddfc654429b"),
+	"isbn" : 1111,
+	"title" : "Database",
+	"author" : "ABC",
+	"ssn" : 123,
+	"sname" : "Vinay"
+}
+{
+	"_id" : ObjectId("63c8d0991305dddfc654429c"),
+	"isbn" : 2222,
+	"title" : "Blockchain",
+	"author" : "XYZ",
+	"ssn" : 159,
+	"sname" : "Vineeth"
+}
+{
+	"_id" : ObjectId("63c8d0991305dddfc654429d"),
+	"isbn" : 3333,
+	"title" : "Cloud",
+	"author" : "PQR",
+	"ssn" : 193,
+	"sname" : "Vikas"
+}
+{
+	"_id" : ObjectId("63c8d0991305dddfc654429e"),
+	"isbn" : 4444,
+	"title" : "DataStructures",
+	"author" : "ABC",
+	"ssn" : 143,
+	"sname" : "Vamshi"
+}
+{
+	"_id" : ObjectId("63c8d0991305dddfc654429f"),
+	"isbn" : 1111,
+	"title" : "Database",
+	"author" : "ABC",
+	"ssn" : 456,
+	"sname" : "Vishanav"
+}
+
+    
 1. Obtain the book details authored by “author_name”.
+db.Library.find({author:'ABC'}).pretty()
+
+{
+	"_id" : ObjectId("63c8cff47b9fb85f84137f60"),
+	"isbn" : 1111,
+	"title" : "Database",
+	"author" : "ABC",
+	"ssn" : 123,
+	"sname" : "Vinay"
+}
+{
+	"_id" : ObjectId("63c8cff47b9fb85f84137f63"),
+	"isbn" : 4444,
+	"title" : "DataStructures",
+	"author" : "ABC",
+	"ssn" : 143,
+	"sname" : "Vamshi"
+}
+{
+	"_id" : ObjectId("63c8cff47b9fb85f84137f64"),
+	"isbn" : 1111,
+	"title" : "Database",
+	"author" : "ABC",
+	"ssn" : 456,
+	"sname" : "Vishanav"
+}
+
+
 2. Obtain the Names of students who have borrowed “Database” books.
+db.Library.find({title:'Database'},{sname:1,_id:0}).pretty()
+
+{ "sname" : "Vinay" }
+{ "sname" : "Vishanav" }
 
 F] Write a PL/SQL procedure to print the first 8 Fibonacci numbers and a program to call
 the same.
