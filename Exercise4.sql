@@ -13,6 +13,29 @@ SQL> create table branch(
   3  addr varchar(10));
 
 Table created.
+
+SQL>create table customer(
+	cid number(3) primary key,
+	cname varchar(10));
+	
+Table created.
+
+SQL>create table account(
+	accno number(3) primary key,
+	type varchar(5),
+	balance number(10),
+	cid number(3) reference customer(cid) on delete cascade,
+	bno number(3) reference branch(bno) on delete cascade);
+	
+Table created.
+
+SQL>create table transaction(
+	cid number(3) references customer(cid) on delete cascade,
+	accno number(3) references account(accno) on delete cascade,
+	tid number(3) primary key,
+	type varchar(3) ,
+	amount type(3));
+	
 SQL> select * from branch;
 
        BNO ADDR
