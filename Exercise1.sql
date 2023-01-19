@@ -38,7 +38,7 @@ SQL> select * from project;
 ---------- ---------- ----------
          1 x          database
          2 Y          cloud
-         3 blockchain blockchain
+         3 Z          blockchain
 	 
 	 
 SQL> create table works_on (
@@ -230,6 +230,8 @@ db.employee.find({pno:1}).pretty()
 f) Write a program that gives all employees in Department #number a 15% pay increase.
 Display a message displaying how many employees were awarded the increase.
 
+step1:edit file1.sql
+type below code in the editor which gets opened
 Begin
 		update emp
 		set salary=1.15*salary
@@ -237,3 +239,7 @@ Begin
 		dbms_output.put_line('The number of Employees who got hike is'||sql%rowcount);
 end;
 /
+
+How to run :
+set serveroutput on
+@file1.sql
