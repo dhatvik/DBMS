@@ -4,10 +4,19 @@ the attributes such as PID, PNAME and PCOLOR. The Shipment relation holds inform
 shipments that include SID and PID attributes identifying the supplier of the shipment and the part
 shipped, respectively. The Shipment relation should contain information on the number of parts
 shipped.
+
+SQL> create table part(
+  2  pid number(3),
+  3  pname varchar(10),
+  4  pcolor varchar(10),
+  5  primary key(pid));
+
+Table created.
+
+
 a) Mention the constraints neatly.
 b) Design the ER diagram for the problem statement
 c) State the schema diagram for the ER diagram.
-23
 d) Create the above tables, insert suitable tuples and perform the following operations in
 Oracle SQL:
 1. Obtain the details of parts supplied by supplier #SNAME.
