@@ -8,11 +8,116 @@ c) Create the above tables, insert suitable tuples and perform the following ope
 SQL:
 
 
+SQL> create table branch(
+  2  bno number(3) primary key,
+  3  addr varchar(10));
+
+Table created.
+SQL> select * from branch;
+
+       BNO ADDR
+---------- ----------
+         1 hunsur
+         2 mysore
+         3 hassan
+         4 bangalore
+         5 magadi
+
+SQL> select * from customer;
+
+       CID CNAME
+---------- ----------
+        11 ram
+        22 rahim
+        33 rahul
+        44 ramesh
+        55 rohith
+
+SQL> select * from account;
+
+     ACCNO TYPE          BALANCE        BNO        CID
+---------- ---------- ---------- ---------- ----------
+       123 S                 500          1         11
+       456 C                 100          2         11
+       789 S                 700          3         22
+       147 S                 560          4         33
+       258 C                 999          5         44
+       369 S                 777          4         55
+
+SQL> select * from transaction;
+
+       CID      ACCNO        TID TYP     AMOUNT
+---------- ---------- ---------- --- ----------
+        11        123          1 D          200
+        11        456          2 D          600
+        11        123          3 D          700
+        11        123          4 W          100
+        22        789          5 D          400
+        33        147          6 D          900
+	 
+
 1. Obtain the details of customers who have both Savings and Current Account.
+
+SQL> select * from customer
+  2  where cid in (select cid from account
+  3  where type='S'
+  4  intersect
+  5  select cid from account
+  6  where type='C');
+
+       CID CNAME
+---------- ----------
+        11 ram
+	
+	
 2. Retrieve the details of branches and the number of accounts in each branch.
+
+SQL> select branch.bno,addr,count(account.accno)
+  2  from branch,account
+  3  where branch.bno=account.bno
+  4  group by branch.bno,addr;
+
+       BNO ADDR       COUNT(ACCOUNT.ACCNO)
+---------- ---------- --------------------
+         1 hunsur                        1
+         2 mysore                        1
+         4 bangalore                     2
+         3 hassan                        1
+         5 magadi                        1
+	 
+	 
 3. Obtain the details of customers who have performed at least 3 transactions.
+
+SQL> select customer.cid,cname,count(transaction.cid)
+  2  from customer,transaction
+  3  where customer.cid=transaction.cid
+  4  group by customer.cid,cname
+  5  having count(transaction.cid)>=3;
+
+       CID CNAME      COUNT(TRANSACTION.CID)
+---------- ---------- ----------------------
+        11 ram                             4
+	
+	
 4. List the details of branches where the number of accounts is less than the average
 number of accounts in all branches.
+
+SQL> select branch.bno,addr,count(account.accno)
+  2  from branch,account
+  3  where branch.bno=account.bno
+  4  group by branch.bno,addr
+  5  having count(account.accno)<(select avg(count(accno))
+  6                               from account
+  7                               group by bno);
+
+       BNO ADDR       COUNT(ACCOUNT.ACCNO)
+---------- ---------- --------------------
+         1 hunsur                        1
+         2 mysore                        1
+         3 hassan                        1
+         5 magadi                        1
+	 
+	 
 d) Create the table, insert suitable tuples and perform the following operations using
 MongoDB
 
