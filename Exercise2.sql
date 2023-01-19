@@ -6,19 +6,51 @@ shipped, respectively. The Shipment relation should contain information on the n
 shipped.
 
 SQL> create table part(
-  2  pid number(3),
-  3  pname varchar(10),
-  4  pcolor varchar(10),
-  5  primary key(pid));
+  2  pid varchar2(10),
+  3  pname varchar2(10),
+  4  pcolour varchar2(10),
+  5  primary key (pid));
+  
+  SQL> select*from part;
 
-Table created.
+PID        PNAME      PCOLOUR
+---------- ---------- ----------
+p1         nut        black
+p2         bolt       blue
+p3         wheel      black
+p4         chain      red
 
 SQL> create table supplier(
-	sid number(3) primary key,
-	sname varchar(10),
-	saddr varchar(10));
+  2  sid varchar2(10),
+  3  sname varchar2(10),
+  4  sadder varchar2(10),
+  5  primary key(sid));
 	
-Table created.	
+SQL> select*from supplier;
+
+SID        SNAME      SADDER
+---------- ---------- ----------
+s1         rama       ayodya
+s2         lakshman   bharatha
+s3         ravana     lanka
+s4         vibhishana srilanka
+s5         maruthi    kishkinde
+
+SQL> create table supply(
+  2  sid varchar2(10) references supplier(sid)on delete cascade,
+  3  pid varchar2(10) references part(pid)on delete cascade,
+  4  primary key(sid,pid));
+  
+  SQL> select*from supply;
+
+SID        PID
+---------- ----------
+s1         p1
+s1         p2
+s2         p3
+s2         p4
+s3         p4
+s4         p4
 
 
 a) Mention the constraints neatly.
@@ -27,9 +59,60 @@ c) State the schema diagram for the ER diagram.
 d) Create the above tables, insert suitable tuples and perform the following operations in
 Oracle SQL:
 1. Obtain the details of parts supplied by supplier #SNAME.
+
+
+SQL> select * from part
+  2  where pid in (select pid from supply
+  3  where sid in (select sid from supplier
+  4  where sname ='rama'));
+
+PID        PNAME      PCOLOUR
+---------- ---------- ----------
+p1         nut        black
+p2         bolt       blue
+
+
+
 2. Obtain the Names of suppliers who supply #PNAME.
+
+SQL> select * from supplier
+  2  where sid in (select sid from supply
+  3  where pid in (select pid from part
+  4  where pname='bolt'));
+
+SID        SNAME      SADDER
+---------- ---------- ----------
+s1         rama       ayodya
+
 3. Delete the parts which are in #PCOLOR.
+
+
+SQL> delete
+  2  from part
+  3  where pcolour='blue';
+
+1 row deleted.
+
+SQL> select * from part;
+
+PID        PNAME      PCOLOUR
+---------- ---------- ----------
+p1         nut        black
+p3         wheel      black
+p4         chain      red
+
 4. List the suppliers who supplies exactly two parts.
+
+
+SQL> select sid ,count(pid)
+  2  from supply
+  3  group by sid
+  4  having count(pid)=2;
+
+SID        COUNT(PID)
+---------- ----------
+s2                  2
+
 e) Create the table, insert suitable tuples and perform the following operations using
 MongoDB
 
