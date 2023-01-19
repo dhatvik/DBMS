@@ -13,6 +13,13 @@ SQL> create table part(
 
 Table created.
 
+SQL> create table supplier(
+	sid number(3) primary key,
+	sname varchar(10),
+	saddr varchar(10));
+	
+Table created.	
+
 
 a) Mention the constraints neatly.
 b) Design the ER diagram for the problem statement
