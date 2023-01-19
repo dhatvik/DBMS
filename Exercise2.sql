@@ -98,7 +98,7 @@ db.warehouse.find().pretty()
     
 1. Update the details of parts for a given part identifier: #PID.
 
-db.employee.update({pid:4},{$set:{color:'Red'}},multi=true)
+db.warehouse.update({pid:4},{$set:{color:'Red'}},multi=true)
 db.warehouse.find().pretty()    
 
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
@@ -145,7 +145,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
 2. Display all suppliers who supply the part with part identifier: #PID.
 
-db.employee.find({pid:1},{sname:1,_id:0}).pretty()
+db.warehouse.find({pid:1},{sname:1,_id:0}).pretty()
 
 { "sname" : "A" }
 { "sname" : "B" }
