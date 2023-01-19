@@ -46,28 +46,6 @@ db.employee.find().pretty()
 	"pno" : 1
 }
 {
-	"_id" : ObjectId("63c837993cc8c4960724dcec"),
-	"ssn" : 159,
-	"name" : "D",
-	"dno" : 1,
-	"dname" : "d1",
-	"pno" : 1
-}
-
-[Execution complete with exit code 0]
-
-1. List all the employees of Department named #Dept_name.
-
-db.employee.find({dname:'d1'}).pretty()
-{
-	"_id" : ObjectId("63c837993cc8c4960724dce9"),
-	"ssn" : 123,
-	"name" : "A",
-	"dno" : 1,
-	"dname" : "d1",
-	"pno" : 1
-}
-{
 	"_id" : ObjectId("63c837993cc8c4960724dcea"),
 	"ssn" : 456,
 	"name" : "B",
@@ -82,6 +60,30 @@ db.employee.find({dname:'d1'}).pretty()
 	"dno" : 3,
 	"dname" : "d3",
 	"pno" : 3
+}
+{
+	"_id" : ObjectId("63c837993cc8c4960724dcec"),
+	"ssn" : 159,
+	"name" : "D",
+	"dno" : 1,
+	"dname" : "d1",
+	"pno" : 1
+}
+
+
+[Execution complete with exit code 0]
+
+1. List all the employees of Department named #Dept_name.
+
+db.employee.find({dname:'d1'}).pretty()
+
+{
+	"_id" : ObjectId("63c837993cc8c4960724dce9"),
+	"ssn" : 123,
+	"name" : "A",
+	"dno" : 1,
+	"dname" : "d1",
+	"pno" : 1
 }
 {
 	"_id" : ObjectId("63c837993cc8c4960724dcec"),
