@@ -5,6 +5,7 @@ project. Assume the attributes for Employee and Project relations.
 a) Mention the constraints neatly.
 b) Design the ER diagram for the problem statement
 c) State the schema diagram for the ER diagram.
+
 d) Create the tables, insert suitable tuples (min 6 each) and perform the following operations
 in SQL
 
