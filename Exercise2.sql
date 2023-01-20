@@ -181,7 +181,7 @@ db.warehouse.find().pretty()
     
 1. Update the details of parts for a given part identifier: #PID.
 
-db.warehouse.update({pid:4},{$set:{color:'Red'}},multi=true)
+db.warehouse.update({pid:4},{$set:{color:'Red'}},multi:true)
 db.warehouse.find().pretty()    
 
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
